@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Dog API</title>
+  <style>
+    html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body{
+background: rgb(255,255,153);
+background: linear-gradient(117deg, rgba(255,255,153,1) 55%, rgba(255,255,102,1) 79%);
+}
+
+body{
+  text-align: center;
+}
+
+button {
+  background: #d1c64d;
+  background-image: -webkit-linear-gradient(top, #d1c64d, #171614);
+  background-image: -moz-linear-gradient(top, #d1c64d, #171614);
+  background-image: -ms-linear-gradient(top, #d1c64d, #171614);
+  background-image: -o-linear-gradient(top, #d1c64d, #171614);
+  background-image: linear-gradient(to bottom, #d1c64d, #171614);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  -webkit-box-shadow: 0px 1px 3px #495206;
+  -moz-box-shadow: 0px 1px 3px #495206;
+  box-shadow: 0px 1px 3px #495206;
+  font-family: Courier New;
+  color: #f5f4ed;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+button:hover {
+  background: #e0c645;
+  background-image: -webkit-linear-gradient(top, #e0c645, #baba58);
+  background-image: -moz-linear-gradient(top, #e0c645, #baba58);
+  background-image: -ms-linear-gradient(top, #e0c645, #baba58);
+  background-image: -o-linear-gradient(top, #e0c645, #baba58);
+  background-image: linear-gradient(to bottom, #e0c645, #baba58);
+  text-decoration: none;
+}
+
+  </style>
+</head>
+
+<body>
+  <button id="changeDog">Click here for new dog</button>
+  <br><br>
+  <div id="dogImage">
+
+    <img src="" alt="">
+  </div>
+
+  <script>
+    const dogImageDiv = document.getElementById('dogImage')
+
+
+// asynchronous programming - stuff you have to wait for the data to fetch from cloud and load(should use .then)
+function dogImages() {
+  fetch('https://dog.ceo/api/breeds/image/random')
+    .then(response => response.json())
+    .then(json => {
+      console.log(json.message)
+      dogImageDiv.innerHTML = `<img src='${json.message}' height=400 width=400>`
+
+    }
+    )
+}
+
+const changeDogDiv = document.getElementById('changeDog')
+
+changeDogDiv.onclick = () => dogImages()
+
+  </script>
+
+
+</body>
+
+</html>
